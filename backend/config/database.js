@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
+    // Check if MONGODB_URI is provided
+    if (!process.env.MONGODB_URI) {
+      console.log('⚠️ MONGODB_URI not provided, running in demo mode');
+      return;
+    }
+
     const conn = await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,

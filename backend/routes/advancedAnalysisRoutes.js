@@ -439,7 +439,7 @@ function optimizeElementPlacement(floorPlan) { return ['Move water features nort
 // Room analysis functions
 function calculateRoomVastuScore(room) { return Math.floor(Math.random() * 40) + 60; }
 function analyzeRoomDirection(room) { return { direction: 'north', score: 85 }; }
-function calculateElementBalance(room) { return { balance: 'good', score: 80 }; }
+function calculateRoomElementBalance(room) { return { balance: 'good', score: 80 }; }
 function analyzeRoomEnergyFlow(room) { return { flow: 'optimal', score: 75 }; }
 function generateRoomRecommendations(room) { return ['Improve lighting', 'Add plants']; }
 function generateRoomRemedies(room) { return ['Use specific colors', 'Rearrange furniture']; }
@@ -508,7 +508,7 @@ function findRelatedTopics(message) { return ['Directional analysis', 'Element b
 
 // Vastu score functions
 function calculateOverallVastuScore(floorPlan, userProfile) { return 82; }
-function calculateDirectionalScore(floorPlan) { return 85; }
+function calculateOverallDirectionalScore(floorPlan) { return 85; }
 function calculateElementScore(floorPlan) { return 80; }
 function calculateEnergyScore(floorPlan) { return 78; }
 function calculateRoomScore(floorPlan) { return 83; }
@@ -528,8 +528,8 @@ function analyzeRoomDistribution(floorPlan) { return { distribution: 'balanced',
 function analyzeSpaceUtilization(floorPlan) { return { utilization: 'efficient', score: 85 }; }
 function analyzeCirculationPaths(floorPlan) { return { paths: 'optimal', score: 82 }; }
 function analyzeNaturalLighting(floorPlan) { return { lighting: 'good', score: 78 }; }
-function analyzeVentilation(floorPlan) { return { ventilation: 'adequate', score: 80 }; }
-function analyzePrivacy(floorPlan) { return { privacy: 'good', score: 83 }; }
+function analyzeFloorPlanVentilation(floorPlan) { return { ventilation: 'adequate', score: 80 }; }
+function analyzeFloorPlanPrivacy(floorPlan) { return { privacy: 'good', score: 83 }; }
 function analyzeFunctionality(floorPlan) { return { functionality: 'excellent', score: 88 }; }
 function analyzeAesthetics(floorPlan) { return { aesthetics: 'good', score: 81 }; }
 function calculateSpaceEfficiency(floorPlan) { return 85; }
@@ -542,7 +542,7 @@ function calculateFireBalance(floorPlan) { return { balance: 'excellent', score:
 function calculateAirBalance(floorPlan) { return { balance: 'good', score: 82 }; }
 function calculateSpaceBalance(floorPlan) { return { balance: 'optimal', score: 88 }; }
 function calculateOverallElementBalance(floorPlan) { return { balance: 'good', score: 83 }; }
-function identifyElementImbalances(floorPlan) { return ['Water element weak', 'Air element strong']; }
+function identifyFloorPlanElementImbalances(floorPlan) { return ['Water element weak', 'Air element strong']; }
 function suggestElementRemedies(floorPlan) { return ['Add water features', 'Reduce air elements']; }
 function suggestElementEnhancement(floorPlan) { return ['Enhance earth elements', 'Balance water features']; }
 function suggestElementMaintenance(floorPlan) { return ['Regular cleaning', 'Element rotation']; }

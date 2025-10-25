@@ -110,6 +110,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
@@ -122,6 +123,32 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Frontend routes
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+});
+
+app.get('/register', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/register.html'));
+});
+
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dashboard.html'));
+});
+
+app.get('/dashboard-advanced', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dashboard-advanced.html'));
+});
+
+app.get('/test', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/test-frontend.html'));
+});
+
+
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -129,15 +156,6 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/analysis', analysisRoutes);
 app.use('/api/vastu', vastuRoutes);
 app.use('/api/advanced', advancedAnalysisRoutes);
-
-// Serve static files from frontend in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../')));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../index.html'));
-  });
-}
 
 // Error handling middleware
 app.use(notFound);

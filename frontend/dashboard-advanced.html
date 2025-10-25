@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Vastu Analysis - Vastu Vision</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="dashboard-styles.css">
+    <link rel="stylesheet" href="vastu-animations.css">
+    <link rel="stylesheet" href="advanced-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.150.0/build/three.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-home"></i>
+                <span>Vastu Vision</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-login">Login</a>
+                <a href="register.html" class="btn-register">Register</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Advanced Dashboard Section -->
+    <section class="advanced-dashboard-section">
+        <!-- Animated Vastu Background -->
+        <div class="vastu-animation-container">
+            <div class="vastu-floating-element"></div>
+            <div class="vastu-floating-element"></div>
+            <div class="vastu-floating-element"></div>
+            <div class="vastu-floating-element"></div>
+            <div class="vastu-floating-element"></div>
+            <div class="vastu-floating-element"></div>
+        </div>
+        
+        <!-- Vastu Compass Animation -->
+        <div class="vastu-compass-animated"></div>
+        
+        <!-- Vastu Energy Lines -->
+        <div class="vastu-energy-line"></div>
+        <div class="vastu-energy-line"></div>
+        <div class="vastu-energy-line"></div>
+        
+        <!-- Vastu Mandala Animation -->
+        <div class="vastu-mandala-animated"></div>
+        
+        <div class="dashboard-container">
+            <!-- Welcome Section -->
+            <div class="welcome-section">
+                <h1>Advanced Vastu Analysis Dashboard</h1>
+                <p>Unlock the power of AI-driven Vastu analysis with comprehensive insights</p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="overallScore">--</h3>
+                        <p>Overall Vastu Score</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="directionalScore">--</h3>
+                        <p>Directional Analysis</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="elementScore">--</h3>
+                        <p>Element Balance</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 id="energyScore">--</h3>
+                        <p>Energy Flow</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Analysis Tabs -->
+            <div class="analysis-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="upload">
+                        <i class="fas fa-upload"></i>
+                        Upload & Analyze
+                    </button>
+                    <button class="tab-btn" data-tab="directional">
+                        <i class="fas fa-compass"></i>
+                        Directional Analysis
+                    </button>
+                    <button class="tab-btn" data-tab="elements">
+                        <i class="fas fa-leaf"></i>
+                        Element Mapping
+                    </button>
+                    <button class="tab-btn" data-tab="energy">
+                        <i class="fas fa-bolt"></i>
+                        Energy Flow
+                    </button>
+                    <button class="tab-btn" data-tab="prosperity">
+                        <i class="fas fa-gem"></i>
+                        Prosperity Zones
+                    </button>
+                    <button class="tab-btn" data-tab="recommendations">
+                        <i class="fas fa-lightbulb"></i>
+                        Recommendations
+                    </button>
+                    <button class="tab-btn" data-tab="ai-chat">
+                        <i class="fas fa-robot"></i>
+                        AI Assistant
+                    </button>
+                </div>
+
+                <!-- Upload & Analyze Tab -->
+                <div class="tab-content active" id="upload">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h2>Drop your floor plan or blueprint here</h2>
+                        <p>or click to browse files</p>
+                        <input type="file" id="fileInput" accept=".jpg,.jpeg,.pdf,.png" multiple style="display: none;">
+                    </div>
+
+                    <!-- Google Maps Integration -->
+                    <div class="maps-integration">
+                        <h3><i class="fas fa-map-marker-alt"></i> Location Analysis</h3>
+                        <div class="maps-container">
+                            <div class="location-input">
+                                <input type="text" id="locationInput" placeholder="Enter your property address">
+                                <button id="getLocationBtn" class="btn-primary">
+                                    <i class="fas fa-search"></i>
+                                    Analyze Location
+                                </button>
+                            </div>
+                            <div id="mapsResults" class="maps-results" style="display: none;">
+                                <div class="surroundings-analysis">
+                                    <h4>Surroundings Analysis</h4>
+                                    <div class="surroundings-grid">
+                                        <div class="surrounding-item positive">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>Water bodies nearby</span>
+                                        </div>
+                                        <div class="surrounding-item positive">
+                                            <i class="fas fa-check-circle"></i>
+                                            <span>Green spaces detected</span>
+                                        </div>
+                                        <div class="surrounding-item negative">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <span>Highway 2km west</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- File Guidelines -->
+                    <div class="file-guidelines">
+                        <div class="guideline-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Preferred files: Architectural drawings, floor plans, or home blueprints</span>
+                        </div>
+                        <div class="guideline-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>For best Vastu analysis, use clear images showing room layouts and dimensions</span>
+                        </div>
+                        <div class="guideline-item">
+                            <span class="file-types">(Use .jpg, .jpeg, .pdf or .png files up to 5MB)</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn-analyze" id="analyzeBtn" disabled>
+                            <i class="fas fa-search"></i>
+                            Start Advanced Analysis
+                        </button>
+                        
+                        <div class="premium-banner">
+                            <i class="fas fa-star"></i>
+                            <span>Get detailed remedies and personalized recommendations with our premium service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Directional Analysis Tab -->
+                <div class="tab-content" id="directional">
+                    <div class="directional-analysis">
+                        <h3>Complete Directional Analysis</h3>
+                        <div class="compass-container">
+                            <div class="compass">
+                                <div class="compass-center">
+                                    <i class="fas fa-home"></i>
+                                </div>
+                                <div class="compass-directions">
+                                    <div class="direction north" data-direction="north">
+                                        <span>North</span>
+                                        <div class="direction-score">85</div>
+                                    </div>
+                                    <div class="direction south" data-direction="south">
+                                        <span>South</span>
+                                        <div class="direction-score">78</div>
+                                    </div>
+                                    <div class="direction east" data-direction="east">
+                                        <span>East</span>
+                                        <div class="direction-score">92</div>
+                                    </div>
+                                    <div class="direction west" data-direction="west">
+                                        <span>West</span>
+                                        <div class="direction-score">75</div>
+                                    </div>
+                                    <div class="direction northeast" data-direction="northeast">
+                                        <span>NE</span>
+                                        <div class="direction-score">88</div>
+                                    </div>
+                                    <div class="direction northwest" data-direction="northwest">
+                                        <span>NW</span>
+                                        <div class="direction-score">82</div>
+                                    </div>
+                                    <div class="direction southeast" data-direction="southeast">
+                                        <span>SE</span>
+                                        <div class="direction-score">90</div>
+                                    </div>
+                                    <div class="direction southwest" data-direction="southwest">
+                                        <span>SW</span>
+                                        <div class="direction-score">85</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="directional-recommendations">
+                            <h4>Directional Recommendations</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Main entrance should face north for prosperity</li>
+                                <li><i class="fas fa-check"></i> Kitchen placement in southeast is optimal</li>
+                                <li><i class="fas fa-exclamation-triangle"></i> Consider relocating bathroom from northeast</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Element Mapping Tab -->
+                <div class="tab-content" id="elements">
+                    <div class="element-mapping">
+                        <h3>Five Elements Mapping</h3>
+                        <div class="elements-grid">
+                            <div class="element-card earth">
+                                <div class="element-icon">
+                                    <i class="fas fa-mountain"></i>
+                                </div>
+                                <h4>Earth</h4>
+                                <div class="element-score">80</div>
+                                <div class="element-locations">
+                                    <span>Southwest</span>
+                                    <span>Center</span>
+                                </div>
+                                <div class="element-recommendations">
+                                    <p>Add earth colors and materials</p>
+                                </div>
+                            </div>
+                            <div class="element-card water">
+                                <div class="element-icon">
+                                    <i class="fas fa-tint"></i>
+                                </div>
+                                <h4>Water</h4>
+                                <div class="element-score">65</div>
+                                <div class="element-locations">
+                                    <span>Northeast</span>
+                                </div>
+                                <div class="element-recommendations">
+                                    <p>Add water features and blue colors</p>
+                                </div>
+                            </div>
+                            <div class="element-card fire">
+                                <div class="element-icon">
+                                    <i class="fas fa-fire"></i>
+                                </div>
+                                <h4>Fire</h4>
+                                <div class="element-score">90</div>
+                                <div class="element-locations">
+                                    <span>Southeast</span>
+                                    <span>South</span>
+                                </div>
+                                <div class="element-recommendations">
+                                    <p>Maintain fire elements</p>
+                                </div>
+                            </div>
+                            <div class="element-card air">
+                                <div class="element-icon">
+                                    <i class="fas fa-wind"></i>
+                                </div>
+                                <h4>Air</h4>
+                                <div class="element-score">75</div>
+                                <div class="element-locations">
+                                    <span>Northwest</span>
+                                </div>
+                                <div class="element-recommendations">
+                                    <p>Improve ventilation</p>
+                                </div>
+                            </div>
+                            <div class="element-card space">
+                                <div class="element-icon">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </div>
+                                <h4>Space</h4>
+                                <div class="element-score">85</div>
+                                <div class="element-locations">
+                                    <span>Center</span>
+                                    <span>Northeast</span>
+                                </div>
+                                <div class="element-recommendations">
+                                    <p>Keep center open</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Energy Flow Tab -->
+                <div class="tab-content" id="energy">
+                    <div class="energy-flow">
+                        <h3>Energy Flow Mapping & Optimization</h3>
+                        <div class="energy-visualization">
+                            <canvas id="energyFlowCanvas" width="800" height="600"></canvas>
+                        </div>
+                        <div class="energy-analysis">
+                            <div class="energy-metrics">
+                                <div class="metric">
+                                    <h4>Overall Energy Score</h4>
+                                    <div class="score-circle">
+                                        <span>78</span>
+                                    </div>
+                                </div>
+                                <div class="metric">
+                                    <h4>Blocked Areas</h4>
+                                    <ul>
+                                        <li>Northwest corner</li>
+                                        <li>Center area</li>
+                                    </ul>
+                                </div>
+                                <div class="metric">
+                                    <h4>Free Flow Areas</h4>
+                                    <ul>
+                                        <li>Northeast</li>
+                                        <li>Southeast</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prosperity Zones Tab -->
+                <div class="tab-content" id="prosperity">
+                    <div class="prosperity-zones">
+                        <h3>Prosperity Zone Identification</h3>
+                        <div class="prosperity-grid">
+                            <div class="prosperity-card wealth">
+                                <div class="prosperity-icon">
+                                    <i class="fas fa-gem"></i>
+                                </div>
+                                <h4>Wealth Zone</h4>
+                                <div class="zone-location">Northeast</div>
+                                <div class="zone-score">88</div>
+                                <div class="zone-activation">
+                                    <h5>Activation Methods:</h5>
+                                    <ul>
+                                        <li>Add water features</li>
+                                        <li>Use blue colors</li>
+                                        <li>Keep area clean</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prosperity-card career">
+                                <div class="prosperity-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <h4>Career Zone</h4>
+                                <div class="zone-location">North</div>
+                                <div class="zone-score">85</div>
+                                <div class="zone-activation">
+                                    <h5>Activation Methods:</h5>
+                                    <ul>
+                                        <li>Place study desk</li>
+                                        <li>Use white colors</li>
+                                        <li>Add crystals</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prosperity-card health">
+                                <div class="prosperity-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h4>Health Zone</h4>
+                                <div class="zone-location">East</div>
+                                <div class="zone-score">92</div>
+                                <div class="zone-activation">
+                                    <h5>Activation Methods:</h5>
+                                    <ul>
+                                        <li>Add plants</li>
+                                        <li>Use green colors</li>
+                                        <li>Ensure good lighting</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="prosperity-card relationships">
+                                <div class="prosperity-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h4>Relationship Zone</h4>
+                                <div class="zone-location">Southwest</div>
+                                <div class="zone-score">80</div>
+                                <div class="zone-activation">
+                                    <h5>Activation Methods:</h5>
+                                    <ul>
+                                        <li>Place master bedroom</li>
+                                        <li>Use earth colors</li>
+                                        <li>Add pairs of objects</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Tab -->
+                <div class="tab-content" id="recommendations">
+                    <div class="recommendations">
+                        <h3>Personalized Recommendations</h3>
+                        <div class="recommendations-tabs">
+                            <button class="rec-tab-btn active" data-rec-tab="immediate">Immediate</button>
+                            <button class="rec-tab-btn" data-rec-tab="short-term">Short Term</button>
+                            <button class="rec-tab-btn" data-rec-tab="long-term">Long Term</button>
+                        </div>
+                        
+                        <div class="rec-content active" id="immediate">
+                            <div class="recommendation-cards">
+                                <div class="rec-card high-priority">
+                                    <div class="rec-icon">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="rec-content">
+                                        <h4>Fix Kitchen Placement</h4>
+                                        <p>Move kitchen to southeast corner for optimal health and prosperity</p>
+                                        <div class="rec-meta">
+                                            <span class="rec-cost">High Cost</span>
+                                            <span class="rec-time">2-3 months</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rec-card medium-priority">
+                                    <div class="rec-icon">
+                                        <i class="fas fa-paint-brush"></i>
+                                    </div>
+                                    <div class="rec-content">
+                                        <h4>Color Therapy</h4>
+                                        <p>Use specific colors in each room to enhance energy flow</p>
+                                        <div class="rec-meta">
+                                            <span class="rec-cost">Low Cost</span>
+                                            <span class="rec-time">1-2 weeks</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Chat Tab -->
+                <div class="tab-content" id="ai-chat">
+                    <div class="ai-chat">
+                        <h3>Unlimited AI Chat Assistance</h3>
+                        <div class="chat-container">
+                            <div class="chat-messages" id="chatMessages">
+                                <div class="message ai-message">
+                                    <div class="message-avatar">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="message-content">
+                                        <p>Hello! I'm your Vastu AI assistant. I can help you with specific recommendations, answer questions about your analysis, and provide personalized advice. How can I assist you today?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="chatInput" placeholder="Ask me anything about your Vastu analysis...">
+                                <button id="sendMessageBtn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                            <div class="chat-suggestions">
+                                <button class="suggestion-btn">Ask about kitchen placement</button>
+                                <button class="suggestion-btn">Get bedroom recommendations</button>
+                                <button class="suggestion-btn">Learn about color therapy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-home"></i>
+                        <span>Vastu Vision</span>
+                    </div>
+                    <p>Bridging ancient wisdom with modern technology to create harmonious living spaces.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="register.html">Register</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-envelope"></i> info@vastuvision.com</p>
+                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Vastu Street, Harmony City</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vastu Vision. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="dashboard-script.js"></script>
+    <script src="advanced-dashboard.js"></script>
+</body>
+</html>

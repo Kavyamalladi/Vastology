@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vastu Vision - ML Test</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            color: #28a745;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .recommendations {
+            margin-top: 20px;
+        }
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+        .recommendations li {
+            background: #e9ecef;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 Vastu Vision - ML Prediction Test</h1>
+        
+        <form id="vastuForm">
+            <div class="form-group">
+                <label>Plot Width (ft):</label>
+                <input type="number" id="width" value="30" min="10" max="100">
+            </div>
+            
+            <div class="form-group">
+                <label>Plot Height (ft):</label>
+                <input type="number" id="height" value="40" min="10" max="100">
+            </div>
+            
+            <div class="form-group">
+                <label>Orientation:</label>
+                <select id="orientation">
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                    <option value="Northeast">Northeast</option>
+                    <option value="Northwest">Northwest</option>
+                    <option value="Southeast">Southeast</option>
+                    <option value="Southwest">Southwest</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Room Type:</label>
+                <select id="roomType">
+                    <option value="Living">Living Room</option>
+                    <option value="Kitchen">Kitchen</option>
+                    <option value="Bedroom">Bedroom</option>
+                    <option value="Bathroom">Bathroom</option>
+                    <option value="Dining">Dining Room</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Floor Number:</label>
+                <input type="number" id="floorNumber" value="1" min="0" max="10">
+            </div>
+            
+            <div class="form-group">
+                <label>Zone:</label>
+                <select id="zone">
+                    <option value="SW">Southwest</option>
+                    <option value="SE">Southeast</option>
+                    <option value="NW">Northwest</option>
+                    <option value="NE">Northeast</option>
+                    <option value="N">North</option>
+                    <option value="S">South</option>
+                    <option value="E">East</option>
+                    <option value="W">West</option>
+                </select>
+            </div>
+            
+            <button type="submit">🔮 Get Vastu Score</button>
+        </form>
+        
+        <div id="result" class="result" style="display: none;">
+            <h3>Vastu Analysis Results</h3>
+            <div class="score" id="score">0</div>
+            <p><strong>Confidence:</strong> <span id="confidence">0%</span></p>
+            <p><strong>Model:</strong> <span id="model">-</span></p>
+            <p><strong>Processing Time:</strong> <span id="processingTime">-</span></p>
+            
+            <div class="recommendations">
+                <h4>Recommendations:</h4>
+                <ul id="recommendations"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('vastuForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                plotDimensions: {
+                    width: parseInt(document.getElementById('width').value),
+                    height: parseInt(document.getElementById('height').value)
+                },
+                orientation: document.getElementById('orientation').value,
+                rooms: [{
+                    type: document.getElementById('roomType').value
+                }],
+                floorNumber: parseInt(document.getElementById('floorNumber').value),
+                zone: document.getElementById('zone').value,
+                adjacentRooms: ["Bedroom", "Kitchen"],
+                sharedWalls: ["Bedroom"]
+            };
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/advanced/test-ml-prediction', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    document.getElementById('score').textContent = result.data.vastuScore;
+                    document.getElementById('confidence').textContent = (result.data.confidence * 100).toFixed(1) + '%';
+                    document.getElementById('model').textContent = result.data.modelInfo.modelType;
+                    document.getElementById('processingTime').textContent = result.data.processingTime + 's';
+                    
+                    const recommendationsList = document.getElementById('recommendations');
+                    recommendationsList.innerHTML = '';
+                    result.data.recommendations.forEach(rec => {
+                        const li = document.createElement('li');
+                        li.textContent = rec;
+                        recommendationsList.appendChild(li);
+                    });
+                    
+                    document.getElementById('result').style.display = 'block';
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                alert('Error connecting to server: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
